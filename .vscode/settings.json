@@ -1,0 +1,9 @@
+{
+    "editor.fontFamily": "'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    "workbench.colorTheme": "Deus Ex Theme",
+    "editor.cursorStyle": "underline-thin",
+    "files.autoSave": "afterDelay",
+    "editor.fontSize": 18,
+    "terminal.integrated.cursorStyle": "underline",
+    "terminal.integrated.fontSize": 18
+}
