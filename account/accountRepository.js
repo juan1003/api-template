@@ -1,4 +1,4 @@
-const {MongoClient, ObjectID} = require("mongodb");
+const {MongoClient, ObjectId} = require("mongodb");
 
 const accountRepository = () => {
     const url = process.env.MONGO_URI;
@@ -43,7 +43,7 @@ const accountRepository = () => {
             try {
                 await client.connect();
                 const db = client.db(dbName);
-                const account = await db.collection('accounts').findOne({_id: ObjectID(id)});
+                const account = await db.collection('accounts').findOne({_id: ObjectId(id)});
                 resolve(account);
             } catch (error) {
                 reject(error);
@@ -73,7 +73,7 @@ const accountRepository = () => {
                 await client.connect();
                 const db = client.db(dbName);
                 const updatedAccount = await db.collection('accounts')
-                    .findOneAndReplace({_id: ObjectID(id)}, account, { returnOriginal: false });
+                    .findOneAndReplace({_id: ObjectId(id)}, account, { returnOriginal: false });
                 resolve(updatedAccount.value);
                 client.close();
             } catch (error) {
@@ -88,7 +88,7 @@ const accountRepository = () => {
             try {
                 await client.connect();
                 const db = client.db(dbName);
-                const removedAccount = await db.collection('accounts').deleteOne({_id: ObjectID(id)});
+                const removedAccount = await db.collection('accounts').deleteOne({_id: ObjectId(id)});
                 resolve(removedAccount.deletedCount === 1);
                 client.close();
             } catch (error) {
