@@ -6,7 +6,7 @@ const { json, urlencoded } = require("body-parser");
 const cp = require("cookie-parser");
 const morgan = require("morgan");
 const helmet = require("helmet");
-const connection = require("./connection");
+const port = process.env.PORT || 8080;
 
 const { accountController } = require('./account');
 
@@ -19,6 +19,6 @@ server.use(morgan('dev'));
 
 server.use('/account', accountController);
 
-server.listen(process.env.PORT || 8080, () => {
-    connection();
+server.listen(port, () => {
+    console.log(`Listening on http://localhost:${port}`);
 });

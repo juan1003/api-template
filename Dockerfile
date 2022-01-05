@@ -1,5 +1,7 @@
 FROM node:current-alpine3.10
 
+RUN apk add bash
+
 RUN mkdir /app
 
 WORKDIR /app
@@ -10,4 +12,4 @@ RUN npm install
 
 COPY . .
 
-CMD ["node", "index.js"]
+CMD ["nodemon", "index.js"]
