@@ -1,20 +1,20 @@
 const { hash } = require("bcrypt");
-const accountRepository = require('./accountRepository');
+const accountRepository = require('../account/accountRepository');
 
 describe('Account Repository', () => {
-    let account1, account2, accounts;
+    let accounts;
 
     beforeEach(async () => {
         const hashedPassword = await hash('pass1234', 15);
 
-        account1 = await accountRepository.add({
+        await accountRepository.add({
             firstName: "Juan",
             lastName: "De Jesus",
             username: "jdejesus",
             password: hashedPassword
         });
 
-        account2 = await accountRepository.add({
+        await accountRepository.add({
             firstName: "Nathan",
             lastName: "Ramirez",
             username: "nramirez",
@@ -25,6 +25,6 @@ describe('Account Repository', () => {
     });
 
     it('should get two users', () => {
-        expect(accounts.length).toBeEqual(2);
+        expect(accounts.length).toEqual(2);
     });
 });
