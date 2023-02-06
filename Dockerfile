@@ -1,4 +1,4 @@
-FROM node:current-alpine3.10
+FROM node:16.19.0-alpine
 
 RUN apk add bash
 
