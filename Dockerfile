@@ -6,10 +6,12 @@ RUN mkdir /app
 
 WORKDIR /app
 
-COPY package*.json .
+COPY package.json ./
 
-RUN npm install
+COPY yarn.lock ./
 
-COPY . .
+RUN yarn
 
-CMD ["nodemon", "index.js"]
+COPY . ./
+
+CMD ["yarn", "dev"]
