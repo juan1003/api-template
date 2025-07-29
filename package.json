@@ -1,15 +1,14 @@
 {
   "name": "api-server",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "2.0.0",
+  "description": "Api server template with TypeScript, Express, and Prisma",
+  "main": "index.ts",
   "scripts": {
-    "dev": "nodemon index.js",
-    "test": "jest --watchAll",
-    "start": "node index.js"
+    "dev": "nodemon ts-node index.ts",
+    "start": "ts-node index.ts"
   },
   "keywords": [],
-  "author": "",
+  "author": "Juan De Jesús",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "5.0.0",
@@ -17,14 +16,25 @@
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "helmet": "^6.0.1",
-    "jest": "^29.4.1",
     "jsonwebtoken": "^9.0.0",
-    "mongodb": "^5.0.0",
     "morgan": "^1.10.0",
-    "multer": "^1.4.5-lts.1"
+    "multer": "^1.4.5-lts.1",
+    "prisma": "6.12.0",
+    "@prisma/client": "^6.12.0"
   },
   "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
+    "@types/cookie-parser": "^1.4.9",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
+    "@types/helmet": "^4.0.0",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/morgan": "^1.9.10",
+    "@types/multer": "^2.0.0",
+    "@types/node": "^24.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3",
     "dotenv": "^16.0.3",
-    "nodemon":"^2.0.20"
+    "nodemon": "^2.0.20"
   }
 }
