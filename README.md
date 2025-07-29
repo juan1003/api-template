@@ -27,4 +27,5 @@ $ bun start
 ## Happy Hacking!
 
 **Note: You need to have [bun](https://bun.sh/) installed to run this project.**
+
 **Note 2: You need a .env file with DATABASE_URL variable containing a postgres connection string.**
