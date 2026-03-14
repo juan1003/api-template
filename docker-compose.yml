@@ -1,8 +1,8 @@
 version: "4.0"
 
 services:
-  posgres:
-    image: postgres:latest
+  postgres:
+    image: postgres:15
     container_name: postgres_container
     environment:
       POSTGRES_USER: postgres
@@ -12,6 +12,14 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+
+  adminer:
+    image: adminer:latest
+    container_name: adminer_container
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
 
 volumes:
   postgres_data:

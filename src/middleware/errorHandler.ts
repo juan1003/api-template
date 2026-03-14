@@ -10,21 +10,21 @@ export const errorHandler = (
   res: Response,
   next: NextFunction
 ) => {
-  if (err instanceof AppError) {
-    if (!err.isOperational) {
-      logger.error(`Critical error: ${err.message}`, { stack: err.stack });
-    } else {
-      logger.warn(`Operational error: ${err.message}`, { statusCode: err.statusCode });
-    }
+    if (err instanceof AppError) {
+      if (!err.isOperational) {
+        logger.error(`Critical error: ${err.message}`, { stack: err.stack });
+      } else {
+        logger.warn(`Operational error: ${err.message}`, { statusCode: err.statusCode });
+      }
 
-    const response: any = {
-      status: "error",
-      message: err.message,
-    };
+      const response: any = {
+        status: "error",
+        message: err.message,
+      };
 
-    if (err instanceof ValidationError) {
-      response.errors = err.errors;
-    }
+      if (err instanceof ValidationError) {
+        response.errors = err.errors;
+      }
 
     return res.status(err.statusCode).json(response);
   }

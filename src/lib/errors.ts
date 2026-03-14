@@ -13,8 +13,11 @@ export class AppError extends Error {
 }
 
 export class ValidationError extends AppError {
-  constructor(public errors: any, message: string = "Validation failed") {
+  public errors: any;
+
+  constructor(errors: any, message: string = "Validation failed") {
     super(message, StatusCodes.BAD_REQUEST);
+    this.errors = errors;
   }
 }
 
