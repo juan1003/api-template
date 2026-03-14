@@ -1,7 +1,7 @@
 import express from "express";
 import { z } from "zod";
 import AccountService from "../services/accountService";
-import { validate } from "../src/middleware/validate";
+import { validate } from "../middleware/validate";
 
 const loginSchema = z.object({
   body: z.object({

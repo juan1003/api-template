@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeAll, afterAll } from "bun:test";
 import request from "supertest";
-import app from "../index";
+import app from "../src/index";
 import { prisma } from "../src/lib/prisma";
 
 describe("Account API Integration Tests", () => {

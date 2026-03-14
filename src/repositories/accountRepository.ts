@@ -1,8 +1,8 @@
 import { compare, hash } from "bcrypt";
 import { sign } from "jsonwebtoken";
-import { prisma } from "../src/lib/prisma";
-import { env } from "../src/config/env";
-import { AuthenticationError, ConflictError } from "../src/lib/errors";
+import { prisma } from "../lib/prisma";
+import { env } from "../config/env";
+import { AuthenticationError, ConflictError } from "../lib/errors";
 
 export default class AccountRepository {
   async login(username: string, password: string): Promise<string> {

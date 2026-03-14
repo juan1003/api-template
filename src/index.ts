@@ -7,9 +7,9 @@ import cors from "cors";
 import rateLimit from "express-rate-limit";
 
 import AccountController from "./controllers/accountController";
-import { errorHandler } from "./src/middleware/errorHandler";
-import { env } from "./src/config/env";
-import { logger } from "./src/lib/logger";
+import { errorHandler } from "./middleware/errorHandler";
+import { env } from "./config/env";
+import { logger } from "./lib/logger";
 
 const app = express();
 const port = env.PORT;
