@@ -1,24 +1,52 @@
+import "express-async-errors";
 import express from "express";
 import cp from "cookie-parser";
 import morgan from "morgan";
 import helmet from "helmet";
 import cors from "cors";
+import rateLimit from "express-rate-limit";
 
 import AccountController from "./controllers/accountController";
+import { errorHandler } from "./src/middleware/errorHandler";
+import { env } from "./src/config/env";
+import { logger } from "./src/lib/logger";
 
-const port = process.env.PORT || 8080;
-const server = express();
-const accountController = new AccountController();
+const app = express();
+const port = env.PORT;
 
-server.use(cors());
-server.use(express.json());
-server.use(express.urlencoded({extended: true}));
-server.use(helmet());
-server.use(cp());
-server.use(morgan('dev'));
+// Security Middleware
+app.use(helmet());
+app.use(cors());
 
-server.use("/account", [accountController.register, accountController.login]);
-
-server.listen(port, () => {
-    console.log(`Listening on http://localhost:${port}`);
+// Rate Limiting
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // Limit each IP to 100 requests per windowMs
+  standardHeaders: true,
+  legacyHeaders: false,
 });
+app.use(limiter);
+
+// Parsers & Logging
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cp());
+app.use(morgan(env.NODE_ENV === "production" ? "combined" : "dev"));
+
+// Routes
+const accountController = new AccountController();
+app.use("/account", accountController.router);
+
+// Health Check
+app.get("/health", (req, res) => {
+  res.status(200).json({ status: "ok", env: env.NODE_ENV });
+});
+
+// Global Error Handler
+app.use(errorHandler);
+
+app.listen(port, () => {
+  logger.info(`Server started in ${env.NODE_ENV} mode on http://localhost:${port}`);
+});
+
+export default app;
